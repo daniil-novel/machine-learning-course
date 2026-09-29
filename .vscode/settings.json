@@ -1,0 +1,20 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "jupyter.notebookFileRoot": "${fileDirname}",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "notebook.lineNumbers": "on",
+  "notebook.globalToolbar": true,
+  "notebook.outline.showMarkdownHeadersOnly": true,
+  "notebook.formatOnSave.enabled": false,
+  "notebook.output.textLineLimit": 1000,
+  "notebook.output.scrolling": true,
+  "files.exclude": {
+    "work": true,
+    "materials": true,
+    "original": true,
+    "review_2026-09-29": true,
+    "готовое_задание": true
+  }
+}

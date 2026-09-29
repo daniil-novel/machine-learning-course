@@ -1,0 +1,12 @@
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/.vscode/
+!/Задание*/
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.env
+.env.*
