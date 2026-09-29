@@ -8422,15 +8422,15 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>4. Предобработка данных</strong></p>
-<p>Необходимо подготовить данные к дальнейшему анализу и моделированию:</p>
+<p>По условию задания необходимо:</p>
 <ul>
-<li>преобразуйте форматы данных при необходимости;</li>
-<li>если в данных присутствуют пропущенные значения, примите решение о способе их обработки (удалить строки/столбцы или заполнить значениями); обоснуйте выбранный подход и реализуйте его;</li>
-<li>выявите выбросы, примите решение об их корректировке или удалении и реализуйте их;</li>
-<li>осуществите разные виды масштабирования и трансформации не менее двух числовых признаков, прокомментируйте полученные результаты;</li>
-<li>осуществите трансформацию категориального признака, выберите и обоснуйте используемый подход, прокомментируйте полученные результаты.</li>
+<li>Преобразовать форматы данных, если это требуется для анализа.</li>
+<li>Принять решение о способе обработки пропусков. Обосновать его и выполнить заполнение или удаление.</li>
+<li>Выявить выбросы. Обосновать решение об их корректировке или удалении и выполнить обработку.</li>
+<li>Применить разные виды масштабирования и трансформации как минимум к двум числовым признакам. Прокомментировать результаты.</li>
+<li>Преобразовать категориальный признак. Обосновать выбранный способ и объяснить результат.</li>
 </ul>
-<p>Важно не только выполнить техническую обработку, но и дать содержательные комментарии по каждому шагу.</p>
+<p>Каждый шаг должен сопровождаться содержательным комментарием. Ниже приведены план обработки этого датасета, расчёты и выводы.</p>
 </div>
 </div>
 </div>
@@ -8455,6 +8455,17 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 лекция 4, слайды 8–30 (PCA). PDF доступны в <a href="https://disk.360.yandex.ru/d/k903xBTIzxMmVQ">папке курса</a>.</p>
 <p>Для запуска положите <code>ai_job_dataset_upd.csv</code> рядом с ноутбуком. Зависимости указаны в <code>requirements.txt</code>.
 Выполняйте ячейки по порядку, начиная с первого пункта.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Подключить библиотеки и задать общие настройки расчётов. Ячейка показывает версии библиотек и определяет вспомогательные функции для поправки Холма, оформления таблиц и графиков.</p>
 </div>
 </div>
 </div>
@@ -8562,6 +8573,17 @@ Name: Версия, dtype: object</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Проверить, что анализ начинается с исходного CSV, и создать его рабочую копию. Для этого таблицы сравниваются целиком, подсчитываются полные дубликаты и повторы <code>job_id</code>. Контрольная сумма файла сохраняется для заключительной проверки.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8617,6 +8639,17 @@ Name: Версия, dtype: object</pre>
 Отрицательная длина невозможна. Описание из 0, 1 или 6 символов выглядит сомнительно.
 Многомиллионные значения сильно отличаются от остальных. Восстановить правильные значения нельзя, поэтому ставим <code>NaN</code>.
 Исходный <code>df</code> сохраняем. Все изменения рабочей копии записываем в журнал.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Применить описанные выше правила очистки и проверить допустимые значения. Исправления записываются в журнал, даты переводятся в формат datetime, сомнительные числа заменяются пропусками. Условия <code>assert</code> проверяют категории, стаж и порядок дат.</p>
 </div>
 </div>
 </div>
@@ -8943,6 +8976,17 @@ Name: Версия, dtype: object</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Проверить последствия очистки. Ячейка сравнивает число пропусков до и после обработки, показывает исправленные категории и диапазоны дат. Отдельно подсчитываются вакансии с дедлайном раньше даты публикации.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -9266,6 +9310,17 @@ Name: Версия, dtype: object</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Оценить, насколько выводы зависят от выбранных границ зарплаты. Для семи вариантов отбора рассчитываются число строк, среднее, медиана и корреляция Спирмена между зарплатой и стажем. Так можно увидеть чувствительность результатов к спорным наблюдениям.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -9425,6 +9480,17 @@ Name: Версия, dtype: object</pre>
 <p>На слайде 45 лекции 3 есть правило: «обучаем (fit) все шаги предобработки только на train».
 Поэтому мы считаем медианы и параметры масштабирования на обучающей части, а к отложенной применяем уже готовые преобразования.
 Здесь держим себя в руках: в test за подсказками не заглядываем.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Разделить данные для будущего обучения и проверки. Строки без достоверной зарплаты сохраняются отдельно, остальные делятся по компаниям с помощью <code>GroupShuffleSplit</code>. Проверяется, что компании и вакансии не пересекаются между частями и все исходные строки учтены.</p>
 </div>
 </div>
 </div>
@@ -9609,6 +9675,17 @@ Name: Версия, dtype: object</pre>
 Параметры определяем только по обучающей части.
 Все три преобразования линейны. Они меняют шкалу, но <strong>не делают распределение нормальным</strong>.
 Зарплату в матрицу признаков не включаем.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Сравнить три способа масштабирования стажа и длины описания. Параметры заполнения пропусков и масштабирования оцениваются на train, затем применяются к test. Таблица и гистограммы показывают результат, а проверки подтверждают свойства преобразований на train.</p>
 </div>
 </div>
 </div>
@@ -9881,6 +9958,17 @@ RobustScaler полезен, если допустимые крайние зна
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Проверить, меняется ли форма распределений после <code>log1p</code> и извлечения квадратного корня. Для двух признаков строятся гистограммы, рассчитываются асимметрия и эксцесс. Дополнительно проверяется, что логарифмирование отложенной части не создаёт бесконечностей или пропусков.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -10026,6 +10114,17 @@ RobustScaler полезен, если допустимые крайние зна
 Образование тоже кодируем через OHE: категорию <code>Unknown</code> нельзя поставить на определённую ступень образования.</p>
 <p><code>job_id</code> и <code>company_name</code> в признаки не включаем. Название компании нужно только для разбиения данных.
 Из навыков и дат создадим новые признаки в пункте 5.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Показать порядковое кодирование грейда и размера компании, затем кодирование категорий отдельными столбцами. Общий обработчик обучается на train и преобразует обе части. Проверяются одинаковое число столбцов, отсутствие пропусков и исключение зарплаты и идентификаторов из матриц признаков.</p>
 </div>
 </div>
 </div>
@@ -10352,13 +10451,37 @@ RobustScaler полезен, если допустимые крайние зна
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>5. Конструирование признаков</strong></p>
-<p>Необходимо создать новые признаки на основе уже имеющихся данных, чтобы расширить информационное пространство и улучшить качество анализа или будущего моделирования.</p>
+<p>По условию задания необходимо:</p>
 <ul>
-<li>разработайте не менее <strong>трех</strong> новых признаков, рассчитанных на основе существующих;</li>
-<li>для каждого нового признака укажите, какую информацию он добавляет и почему его включение может быть полезным для анализа или моделирования;</li>
-<li>исследуйте как новые признаки взаимосвязаны с ранее определенной целевой переменной;</li>
-<li>опишите выявленные закономерности и оцените потенциальную ценность новых признаков для последующего моделирования.</li>
+<li>Создать не менее трёх новых признаков на основе имеющихся данных.</li>
+<li>Объяснить, какую информацию добавляет каждый признак и чем он может быть полезен.</li>
+<li>Исследовать связь новых признаков с выбранной целевой переменной.</li>
+<li>Описать закономерности и оценить возможную пользу признаков для будущих моделей.</li>
 </ul>
+<p>Ниже созданы шесть признаков и разобраны результаты их проверки. Обучение моделей в этот пункт задания не входит. Поэтому возможное улучшение прогноза рассматривается как гипотеза.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="%D0%9A%D0%B0%D0%BA-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8F%D1%8E%D1%82%D1%81%D1%8F-%D0%B8%D0%B4%D0%B5%D0%B8-%D0%B8%D0%B7-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0-3">Как проверяются идеи из пункта 3<a class="anchor-link" href="#%D0%9A%D0%B0%D0%BA-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8F%D1%8E%D1%82%D1%81%D1%8F-%D0%B8%D0%B4%D0%B5%D0%B8-%D0%B8%D0%B7-%D0%BF%D1%83%D0%BD%D0%BA%D1%82%D0%B0-3">¶</a></h3><p>В маркдаун-ячейке 26 предложены варианты признаков и гипотезы для будущих моделей. Ниже уточнено, что проверено в этой работе, а что остаётся для этапа моделирования.</p>
+<ol>
+<li><p><strong>Стаж, грейд и бинарный признак.</strong> Сильная корреляция стажа с числовым кодом грейда может затруднить интерпретацию отдельных коэффициентов линейной модели. Она не означает, что любая линейная модель будет работать некорректно. Флаг <code>is_senior_or_above</code> можно сравнить с полным кодированием грейда на одинаковых разбиениях данных. Бинаризация теряет различия между EN и MI, а также между SE и EX. Она не гарантирует устранения связи со стажем. Здесь реализован другой признак: <code>senior_large</code> равен 1 только для SE/EX в крупной компании. Его связь с зарплатой исследуется в пунктах 5.2 и 5.3. Это не проверка качества варианта с одним флагом старшего грейда.</p>
+</li>
+<li><p><strong>Зарплата относительно среднего по грейду.</strong> Такое отношение подходит для описания уже известных зарплат и поиска необычных вакансий. Среднее по учебной выборке нельзя автоматически считать средним по рынку. В матрицу предикторов отношение не включено: для его расчёта нужна сама предсказываемая зарплата. Возникнет утечка целевой переменной. Поэтому в пункте 5.3 сравниваются групповые медианы как результат анализа, без создания такого предиктора.</p>
+</li>
+<li><p><strong>Баллы соцпакета и длина описания.</strong> Слабая парная корреляция с зарплатой не доказывает бесполезность признака. Возможны нелинейная связь и совместный эффект с другими характеристиками. Оба признака сохранены. Решение об исключении можно принять после сравнения моделей с ними и без них на одинаковых разбиениях.</p>
+</li>
+<li><p><strong>Грейд как главный фактор зарплаты.</strong> Более высокая корреляция грейда с зарплатой описывает связь в выборке. Она не доказывает причинного влияния и не показывает, сколько грейд добавляет к прогнозу после учёта стажа. Для проверки нужны сопоставимые модели: со стажем, с грейдом и с обоими признаками. В этой работе такой эксперимент не проводится.</p>
+</li>
+<li><p><strong>PCA для стажа и грейда.</strong> Эта идея реализована в пункте 5.4. Одна компонента сохраняет 96,27% дисперсии стандартизированной пары на train. Это подтверждает возможность сжатия двух признаков, но не улучшение прогноза зарплаты. PCA не использует зарплату при выборе компонент. Поэтому компоненты пока не включены в итоговую матрицу.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -10416,6 +10539,17 @@ RobustScaler полезен, если допустимые крайние зна
 Иначе сравнение с <code>Unknown</code> могло бы ошибочно отметить различие стран.
 Если страна сотрудника ещё неизвестна при публикации, этот признак нельзя использовать для прогноза в тот момент.
 Срок приёма заявок тоже должен быть известен заранее.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Рассчитать шесть новых признаков по правилам из таблицы выше. Описательная статистика и проверки диапазонов помогают найти ошибки в формулах. Зарплаты дополнительно перемешиваются: значения новых признаков должны остаться прежними, поскольку их формулы не используют целевую переменную.</p>
 </div>
 </div>
 </div>
@@ -10674,6 +10808,17 @@ Name: Вакансий, dtype: int64</pre>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Оценить направление и силу связи каждого нового признака с зарплатой. Для числовых признаков используется коэффициент Кендалла, для бинарных признаков применяется критерий Манна-Уитни и рассчитывается рангово-бисериальная корреляция. Поправка Холма учитывает шесть проверок, графики помогают сопоставить результаты с распределениями.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -10849,6 +10994,17 @@ Name: Вакансий, dtype: int64</pre>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="5.3.-%D0%97%D0%B0%D1%80%D0%BF%D0%BB%D0%B0%D1%82%D0%B0-%D0%BF%D0%BE-%D0%B3%D1%80%D0%B5%D0%B9%D0%B4%D1%83-%D0%B8-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%D1%83-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8">5.3. Зарплата по грейду и размеру компании<a class="anchor-link" href="#5.3.-%D0%97%D0%B0%D1%80%D0%BF%D0%BB%D0%B0%D1%82%D0%B0-%D0%BF%D0%BE-%D0%B3%D1%80%D0%B5%D0%B9%D0%B4%D1%83-%D0%B8-%D1%80%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%D1%83-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8">¶</a></h3><p>Для проверки <code>senior_large</code> сравним медианные зарплаты во всех 12 сочетаниях грейда и размера компании.
 Тепловая карта покажет, сохраняется ли разница между размерами компаний внутри каждого грейда.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Разобрать, с чем связана заметная связь <code>senior_large</code> с зарплатой. Для каждой пары «грейд и размер компании» подсчитываются вакансии и медианная зарплата. Тепловая карта и разница медиан крупных и малых компаний позволяют сравнить размер компаний внутри одного грейда.</p>
 </div>
 </div>
 </div>
@@ -11033,6 +11189,17 @@ Name: Вакансий, dtype: int64</pre>
 Под нагрузками будем понимать <strong>корреляции стандартизованных признаков с компонентами</strong>.
 Это отличается от коэффициентов в <code>components_</code>.
 Отдельно проверим, можно ли сжать пару «стаж и грейд» в одну компоненту.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Проверить идею сжатия коррелирующих признаков с помощью PCA. После заполнения пропусков и стандартизации на train рассчитываются доли сохранённой дисперсии и нагрузки. Отдельно исследуется одна компонента для пары «стаж и грейд»; проверяется отсутствие корреляций между компонентами полной модели PCA.</p>
 </div>
 </div>
 </div>
@@ -11282,6 +11449,17 @@ PCA в этот вариант не входит. Его можно будет �
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Зачем нужна следующая ячейка.</strong> Собрать итоговые матрицы с исходными и новыми признаками. Один обработчик обучается на train и применяется к остальным строкам. Заключительные проверки контролируют сохранность CSV, учёт строк, разделение компаний, состав матриц и отсутствие искусственно заполненных зарплат.</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -11369,7 +11547,7 @@ Name: Проверка пройдена, dtype: bool</pre>
 <h3 id="%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2">Источники методов<a class="anchor-link" href="#%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA%D0%B8-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%BE%D0%B2">¶</a></h3><p>Для пунктов 4–5 использованы PDF лекций 1–4 из <a href="https://disk.360.yandex.ru/d/k903xBTIzxMmVQ">папки курса</a>:
 <code>Лекция1_Intro.pdf</code> (93 слайда), <code>Лекция2_EDA.pdf</code> (67), <code>Лекция3_FE.pdf</code> (49), <code>Лекция4_DR.pdf</code> (64).
 Номера основных слайдов приведены в начале пункта 4.
-Также использованы примеры масштабирования, корреляций и PCA из семинаров 2–4. Видеозаписи не использовались.</p>
+Также использованы примеры масштабирования, корреляций и PCA из семинаров 2–4. Все видеозаписи лекций просмотрены нами. Материалы лекций также самостоятельно изучены на парах и после них.</p>
 <p>Справочные материалы: <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kendalltau.html">SciPy: Kendall τ</a>,
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">scikit-learn: StandardScaler</a>,
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html">scikit-learn: PCA</a>,
@@ -11416,17 +11594,6 @@ Name: Проверка пройдена, dtype: bool</pre>
 <li>В названии загружаемого в Smart LMS файла нужно указать фамилию(ии) автора(ов) работы.</li>
 <li>При использовании инструментов искусственного интеллекта необходимо отметить это в работе в соответствии с правилами НИУ ВШЭ.</li>
 </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="%D0%AD%D1%82%D0%BE%D1%82-%D1%84%D0%B0%D0%B9%D0%BB-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C-%D0%BA%D0%B0%D0%BA-Jupyter-Notebook-(.ipynb)-%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%B8%D1%82%D1%8C-%D0%B2-Smart-LMS-%D0%B4%D0%BE-21:00-29-%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F.-%D0%9D%D0%B5-%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D1%82%D1%81%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B0%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B2-Smart-LMS-%D0%B2-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D0%BC%D0%B8%D0%BD%D1%83%D1%82-%D0%BF%D0%B5%D1%80%D0%B5%D0%B4-%D0%B4%D0%B5%D0%B4%D0%BB%D0%B0%D0%B9%D0%BD%D0%BE%D0%BC.-%D0%9F%D0%BE%D1%81%D0%BB%D0%B5-%D0%B4%D0%B5%D0%B4%D0%BB%D0%B0%D0%B9%D0%BD%D0%B0-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D1%8E%D1%82%D1%81%D1%8F.">Этот файл нужно сохранить как Jupyter Notebook (.ipynb) и загрузить в Smart LMS до 21:00 29 сентября. Не рекомендуется загружать файл в Smart LMS в последние несколько минут перед дедлайном. После дедлайна выполненные задания не принимаются.<a class="anchor-link" href="#%D0%AD%D1%82%D0%BE%D1%82-%D1%84%D0%B0%D0%B9%D0%BB-%D0%BD%D1%83%D0%B6%D0%BD%D0%BE-%D1%81%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D1%8C-%D0%BA%D0%B0%D0%BA-Jupyter-Notebook-(.ipynb)-%D0%B8-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%B8%D1%82%D1%8C-%D0%B2-Smart-LMS-%D0%B4%D0%BE-21:00-29-%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F.-%D0%9D%D0%B5-%D1%80%D0%B5%D0%BA%D0%BE%D0%BC%D0%B5%D0%BD%D0%B4%D1%83%D0%B5%D1%82%D1%81%D1%8F-%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B0%D1%82%D1%8C-%D1%84%D0%B0%D0%B9%D0%BB-%D0%B2-Smart-LMS-%D0%B2-%D0%BF%D0%BE%D1%81%D0%BB%D0%B5%D0%B4%D0%BD%D0%B8%D0%B5-%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D0%BC%D0%B8%D0%BD%D1%83%D1%82-%D0%BF%D0%B5%D1%80%D0%B5%D0%B4-%D0%B4%D0%B5%D0%B4%D0%BB%D0%B0%D0%B9%D0%BD%D0%BE%D0%BC.-%D0%9F%D0%BE%D1%81%D0%BB%D0%B5-%D0%B4%D0%B5%D0%B4%D0%BB%D0%B0%D0%B9%D0%BD%D0%B0-%D0%B2%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%80%D0%B8%D0%BD%D0%B8%D0%BC%D0%B0%D1%8E%D1%82%D1%81%D1%8F.">¶</a></h3>
 </div>
 </div>
 </div>
