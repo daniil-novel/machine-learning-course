@@ -16,5 +16,7 @@
     "original": true,
     "review_2026-09-29": true,
     "готовое_задание": true
-  }
+  },
+  "files.trimTrailingWhitespace": false,
+  "files.trimFinalNewlines": false
 }
